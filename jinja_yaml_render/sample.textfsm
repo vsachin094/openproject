@@ -1,0 +1,8 @@
+Value INTERFACE (\S+)
+Value IPADDRESS (\d+\.\d+\.\d+\.\d+)
+Value NETMASK (\d+\.\d+\.\d+\.\d+)
+Value MAC (\w+:\w+:\w+:\w+:\w+:\w+)
+
+Start
+  ^${INTERFACE}\s+Link encap:\S+\s+HWaddr\s+${MAC}\s*
+  ^\s+inet addr:${IPADDRESS}\s+Bcast:\d+\.\d+\.\d+\.\d+\s+Mask:${NETMASK}\s* -> Record
