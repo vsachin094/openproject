@@ -14,22 +14,22 @@ def parse_router_interfaces(config_text):
 
     return interfaces
 
-# Example configuration text from a router
-router_config = """
-interface GigabitEthernet0/0
- description This is the LAN interface
- ip address 192.168.1.1 255.255.255.0
-!
-interface GigabitEthernet0/1
- ipv6 address 2001:0db8:85a3:0000:0000:8a2e:0370:7334/64
-!
-interface GigabitEthernet0/2
- ip address 10.0.0.1/24
-!
-"""
+# Function to read router configuration from file
+def read_config_file(file_path):
+    with open(file_path, 'r') as file:
+        config_text = file.read()
+    return config_text
 
+# Example file path where router configuration is stored
+config_file_path = 'router_config.txt'
+
+# Read configuration from file
+router_config = read_config_file(config_file_path)
+
+# Parse interfaces
 parsed_interfaces = parse_router_interfaces(router_config)
 
+# Display parsed interfaces
 for interface, config in parsed_interfaces.items():
     print(f"Interface: {interface}")
     if config['description']:
