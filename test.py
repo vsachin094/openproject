@@ -10,7 +10,7 @@ def get_interface_info(interface_config_output):
         interface_name = match.group(1)
         interface_config = match.group(2)
         # Extract IPv4 addresses
-        ipv4_matches = re.finditer(r"ip address (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?:/(\d{1,2}))?", interface_config)
+        ipv4_matches = re.finditer(r"(?:ip|ipv4) address (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s*(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})?", interface_config)
         # Extract IPv6 addresses
         ipv6_matches = re.finditer(r"ipv6 address ([\w:]+)/(\d+)", interface_config)
         # Extract description
@@ -18,7 +18,7 @@ def get_interface_info(interface_config_output):
         for ipv4_match in ipv4_matches:
             interface_info = {'interface_name': interface_name, 'ip_address': ipv4_match.group(1)}
             if ipv4_match.group(2):
-                interface_info['mask_prefix'] = int(ipv4_match.group(2))
+                interface_info['mask'] = ipv4_match.group(2)
             if description_match:
                 interface_info['description'] = description_match.group(1).strip()
             interfaces.append(interface_info)
@@ -53,9 +53,9 @@ interface Loopback0
  ip address 127.0.0.1 255.0.0.0
 !
 
-interface Loopback1
+interface Vlan11
  description Loopback interface
- ip address 127.0.0.1/32
+ ipv4 address 127.0.0.1 255.255.255.250
 !
 """
 
