@@ -1,39 +1,63 @@
 import re
 
-def parse_router_interfaces(config_text):
-    interfaces = {}
-    interface_pattern = re.compile(r"interface (\S+)(?:\n\s+description (.*?))?\n\s+ip address ((?:\d{1,3}\.){3}\d{1,3}(?:/\d{1,2})?) (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4})")
-    matches = interface_pattern.findall(config_text, re.DOTALL)
-
+def get_interface_info(interface_config_output):
+    interfaces = []
+    # Regular expression pattern to match interface details
+    interface_pattern = r"interface (\S+)\s*([\s\S]*?)(?=^interface|\Z)"
+    # Search for all interface patterns in the configuration output
+    matches = re.finditer(interface_pattern, interface_config_output, re.MULTILINE)
     for match in matches:
-        interface_name = match[0]
-        description = match[1]
-        ip_address = match[2]
-        subnet_mask = match[3]
-        interfaces[interface_name] = {'description': description, 'ip_address': ip_address, 'subnet_mask': subnet_mask}
-
+        interface_name = match.group(1)
+        interface_config = match.group(2)
+        # Extract IPv4 addresses
+        ipv4_matches = re.finditer(r"ip address (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?:/(\d{1,2}))?", interface_config)
+        # Extract IPv6 addresses
+        ipv6_matches = re.finditer(r"ipv6 address ([\w:]+)/(\d+)", interface_config)
+        # Extract description
+        description_match = re.search(r"description (.*)", interface_config)
+        for ipv4_match in ipv4_matches:
+            interface_info = {'interface_name': interface_name, 'ip_address': ipv4_match.group(1)}
+            if ipv4_match.group(2):
+                interface_info['mask_prefix'] = int(ipv4_match.group(2))
+            if description_match:
+                interface_info['description'] = description_match.group(1).strip()
+            interfaces.append(interface_info)
+        for ipv6_match in ipv6_matches:
+            interface_info = {'interface_name': interface_name, 'ip_address': ipv6_match.group(1), 'mask_prefix': int(ipv6_match.group(2))}
+            if description_match:
+                interface_info['description'] = description_match.group(1).strip()
+            interfaces.append(interface_info)
     return interfaces
 
-# Function to read router configuration from file
-def read_config_file(file_path):
-    with open(file_path, 'r') as file:
-        config_text = file.read()
-    return config_text
+# Example usage with provided interface config output
+interface_config_output = """
+interface GigabitEthernet1/1/2
+ description Some description
+ ip address 192.168.1.1 255.255.255.0
+ ip address 10.1.4.5 255.255.255.255
+ ipv6 address 2001:0db8:85a3:0000:0000:8a2e:0370:7334/64
+!
 
-# Example file path where router configuration is stored
-config_file_path = 'router_config.txt'
+interface Vlan1
+ description Another interface
+ ipv6 address 2001:0db8:85a3:0000:0000:8a2e:0370:7335/64
+!
 
-# Read configuration from file
-router_config = read_config_file(config_file_path)
+interface Tunnel0
+ description Tunnel interface
+ ip address 10.0.0.1 255.255.255.0
+!
 
-# Parse interfaces
-parsed_interfaces = parse_router_interfaces(router_config)
+interface Loopback0
+ description Loopback interface
+ ip address 127.0.0.1 255.0.0.0
+!
 
-# Display parsed interfaces
-for interface, config in parsed_interfaces.items():
-    print(f"Interface: {interface}")
-    if config['description']:
-        print(f"Description: {config['description']}")
-    print(f"IP Address: {config['ip_address']}")
-    print(f"Subnet Mask: {config['subnet_mask']}")
-    print()
+interface Loopback1
+ description Loopback interface
+ ip address 127.0.0.1/32
+!
+"""
+
+interfaces = get_interface_info(interface_config_output)
+print(interfaces)
