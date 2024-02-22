@@ -1,18 +1,27 @@
-import pandas as pd
+# {
+#   "database": {
+#     "host": "localhost",
+#     "port": 3306,
+#     "username": "user",
+#     "password": "password123"
+#   },
+#   "api_key": "your_api_key_here"
+# }
 
-# Create a DataFrame with column A
-data = {'A': [1, 2, 3, 4, 5]}  # Example values for column A
-df = pd.DataFrame(data)
+import os
+import json
 
-# Function to generate three values based on input value
-def generate_values(value):
-    # Example logic to generate values
-    value1 = value * 2
-    value2 = value ** 2
-    value3 = value + 10
-    return value1, value2, value3
+# Get the directory of the current script
+script_dir = os.path.dirname(os.path.realpath(__file__))
 
-# Use apply method to create new columns
-df[['B', 'C', 'D']] = df['A'].apply(lambda x: generate_values(x)).apply(pd.Series)
+# Load configuration from file
+config_file_path = os.path.join(script_dir, 'config.json')
+with open(config_file_path, 'r') as f:
+    _config = json.load(f)
 
-print(df)
+# Accessible variables
+DATABASE_HOST = _config['database']['host']
+DATABASE_PORT = _config['database']['port']
+DATABASE_USERNAME = _config['database']['username']
+DATABASE_PASSWORD = _config['database']['password']
+API_KEY = _config['api_key']
