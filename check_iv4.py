@@ -9,15 +9,15 @@ data = {
 
 df = pd.DataFrame(data)
 
-# Function to check if value is IPv4 address
-def is_ipv4(ip):
+# Function to check if value is IPv6 address
+def is_ipv6(ip):
     try:
-        ipaddress.IPv4Address(ip)
+        ipaddress.IPv6Address(ip)
         return True
     except ipaddress.AddressValueError:
         return False
 
-# Remove rows where IPv4 address is present
-df = df[~df['IPv4_Subnet'].apply(lambda x: is_ipv4(x))]
+# Remove rows where IPv6 address is present
+df = df[~df['IPv6'].apply(lambda x: is_ipv6(x))]
 
 print(df)
