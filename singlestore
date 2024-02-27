@@ -1,0 +1,34 @@
+import pypyodbc
+import kerberos
+
+def connect_to_database():
+    # Set up Kerberos authentication
+    service = "your_database_service"
+    try:
+        _, krb_context = kerberos.authGSSClientInit(service)
+        kerberos.authGSSClientStep(krb_context, "")
+        ticket = kerberos.authGSSClientResponse(krb_context)
+    except kerberos.GSSError as e:
+        print("Kerberos authentication failed:", e)
+        return None
+
+    # Set up connection string
+    conn_str = 'DRIVER={your_driver};SERVER=your_server;DATABASE=your_database;Trusted_Connection=yes;Authentication=ActiveDirectoryKerberos'
+
+    try:
+        # Connect to the database
+        conn = pypyodbc.connect(conn_str, autocommit=True)
+        return conn
+    except pypyodbc.Error as e:
+        print("Database connection error:", e)
+        return None
+
+# Example usage:
+conn = connect_to_database()
+if conn:
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM your_table")
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
+    conn.close()
