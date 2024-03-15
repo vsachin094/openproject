@@ -14,10 +14,15 @@ def find_differences(list1, list2):
         else:
             devices_to_remove.append(device)
 
+    for device in list2:
+        device_name = device.get('device_name')
+        if device_name not in {d.get('name') for d in list1}:
+            devices_to_remove.append(device)
+
     return devices_to_onboard, devices_already_onboarded, devices_to_remove
 
 # Example data
-onboard_list = [{'device_name': 'iPhone'}, {'device_name': 'Samsung'}]
+onboard_list = [{'device_name': 'iPhone'}, {'device_name': 'Samsung'}, {'device_name': 'Sony'}]
 user_wants_list = [{'name': 'iPhone'}, {'name': 'OnePlus'}, {'name': 'Xiaomi'}]
 
 to_onboard, already_onboarded, to_remove = find_differences(user_wants_list, onboard_list)
