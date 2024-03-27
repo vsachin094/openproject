@@ -1,0 +1,13 @@
+# Example rules.txt file
+
+# Rule 1: If temperature is above 30 degrees Celsius and humidity is above 80%, it's hot and humid
+temperature > 30 and humidity > 80:
+    result = "hot and humid"
+
+# Rule 2: If temperature is below 10 degrees Celsius and humidity is below 30%, it's cold and dry
+temperature < 10 and humidity < 30:
+    result = "cold and dry"
+
+# Rule 3: If temperature is between 10 and 30 degrees Celsius and humidity is between 40 and 70%, it's moderate
+10 <= temperature <= 30 and 40 <= humidity <= 70:
+    result = "moderate"
