@@ -11,3 +11,24 @@ temperature < 10 and humidity < 30:
 # Rule 3: If temperature is between 10 and 30 degrees Celsius and humidity is between 40 and 70%, it's moderate
 10 <= temperature <= 30 and 40 <= humidity <= 70:
     result = "moderate"
+
+
+
+
+# Example rules.txt file
+
+# Rule 1: If the string starts with "Hello", set result to "Greeting"
+text.startswith("Hello"):
+    result = "Greeting"
+
+# Rule 2: If the string ends with "!", set result to "Excited"
+text.endswith("!"):
+    result = "Excited"
+
+# Rule 3: If the string contains "Python", set result to "Programming"
+"Python" in text:
+    result = "Programming"
+
+# Rule 4: If the string is exactly "Goodbye", set result to "Farewell"
+text == "Goodbye":
+    result = "Farewell"
