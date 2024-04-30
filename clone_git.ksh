@@ -7,7 +7,7 @@ clone_repo() {
     # Clean the directory
     if [ -d "$directory" ]; then
         echo "Cleaning directory '$directory'..."
-        for file in "$directory"/*; do
+        for file in "$directory"/* "$directory"/.[!.]* "$directory"/..?*; do
             if [ -e "$file" ]; then
                 rm -rf "$file"
             fi
