@@ -7,7 +7,8 @@ clone_repo() {
     # Clean the directory
     if [ -d "$directory" ]; then
         echo "Cleaning directory '$directory'..."
-        find "$directory" -mindepth 1 -delete
+        cd "$directory" || { echo "Failed to change directory."; exit 1; }
+        rm -rf *
     else
         echo "Directory '$directory' does not exist. Creating it..."
         mkdir -p "$directory"
