@@ -1,25 +1,17 @@
 #!/bin/ksh
 
-# Function to clean directory
-clean_directory() {
-    if [ -d "$directory" ]; then
-        echo "Cleaning directory '$directory'..."
-        for file in "$directory"/*; do
-            if [ -e "$file" ]; then
-                rm -rf "$file"
-            fi
-        done
-    else
-        echo "Directory '$directory' does not exist. Creating it..."
-        mkdir -p "$directory"
-    fi
-}
-
 # Function to clone repository
 clone_repo() {
     username=$USER
 
-    clean_directory
+    # Clean the directory
+    if [ -d "$directory" ]; then
+        echo "Cleaning directory '$directory'..."
+        find "$directory" -mindepth 1 -delete
+    else
+        echo "Directory '$directory' does not exist. Creating it..."
+        mkdir -p "$directory"
+    fi
 
     # Clone repository
     git clone "https://$username@$repo_url" "$directory"
