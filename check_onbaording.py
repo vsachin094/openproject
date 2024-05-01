@@ -32,3 +32,52 @@ list_of_dicts = [{'id': 1, 'name': 'John'},
 # Call the function
 result = check_onboarding_status(list_of_data, list_of_dicts)
 print(result)
+
+
+
+def check_onboarding_status(onboarded_devices, new_devices):
+    # Extract device names from dictionaries
+    onboarded_device_names = [device['device_name'] for device in onboarded_devices]
+    new_device_names = [device['device_name'] for device in new_devices]
+
+    # Initialize lists to store already onboarded, devices needing onboarding, and devices needing removal
+    already_onboarded = []
+    need_to_onboard = []
+    need_to_remove = []
+
+    # Check if onboarded devices is not empty
+    if onboarded_devices:
+        # Check each new device
+        for device in new_devices:
+            if device['device_name'] in onboarded_device_names:
+                already_onboarded.append(device)
+            else:
+                need_to_onboard.append(device)
+
+        # Check each onboarded device
+        for device in onboarded_devices:
+            if device['device_name'] not in new_device_names:
+                need_to_remove.append(device)
+    else:
+        # If onboarded devices list is empty, all new devices need onboarding
+        need_to_onboard = new_devices
+
+    # If new devices list is empty and onboarded devices list is not empty, all onboarded devices need removal
+    if not new_devices and onboarded_devices:
+        need_to_remove = onboarded_devices
+
+    # Construct the result dictionary
+    result_dict = {
+        'already_onboarded': already_onboarded,
+        'to_onboard': need_to_onboard,
+        'to_remove': need_to_remove
+    }
+    return result_dict
+
+# Sample data
+onboarded_devices = [{"device_name": "Router1", "device_ip": "172.30.1.3", "device_os": "cisco-ios"},{"device_name": "Router3", "device_ip": "172.30.1.3", "device_os": "cisco-ios"},{"device_name": "Router2", "device_ip": "172.30.1.4", "device_os": "cisco-ios"}]
+new_devices = [{"device_name": "Router2", "device_ip": "172.30.1.4", "device_os": "cisco-ios"}]
+
+# Call the function
+result = check_onboarding_status(onboarded_devices, new_devices)
+print(result)
