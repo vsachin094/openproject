@@ -81,3 +81,70 @@ new_devices = [{"device_name": "Router2", "device_ip": "172.30.1.4", "device_os"
 # Call the function
 result = check_onboarding_status(onboarded_devices, new_devices)
 print(result)
+
+
+
+def check_onboarding_status(onboarded_devices, new_devices, cw_onboarded_devices, nso_onboarded_devices):
+    # Extract device names from dictionaries
+    onboarded_device_names = [device['device_name'] for device in onboarded_devices]
+    new_device_names = [device['device_name'] for device in new_devices]
+    cw_onboarded_names = [device for device in cw_onboarded_devices]
+    nso_onboarded_names = [device for device in nso_onboarded_devices]
+
+    # Initialize lists to store already onboarded, devices needing onboarding, and devices needing removal for each category
+    already_onboarded_cw = []
+    to_onboard_cw = []
+    to_remove_cw = []
+    already_onboarded_nso = []
+    to_onboard_nso = []
+    to_remove_nso = []
+
+    # Check if onboarded devices is not empty for CW devices
+    if cw_onboarded_devices:
+        # Check each new device
+        for device in new_devices:
+            if device['device_name'] in cw_onboarded_names:
+                already_onboarded_cw.append(device)
+            else:
+                to_onboard_cw.append(device)
+
+        # Check each onboarded device
+        for device in cw_onboarded_devices:
+            if device not in new_device_names:
+                to_remove_cw.append(device)
+
+    # If new devices list is empty and onboarded devices list is not empty, all onboarded devices need removal for CW devices
+    if not new_devices and cw_onboarded_devices:
+        to_remove_cw = cw_onboarded_devices
+
+    # Repeat the same process for NSO devices
+    if nso_onboarded_devices:
+        for device in new_devices:
+            if device['device_name'] in nso_onboarded_names:
+                already_onboarded_nso.append(device)
+            else:
+                to_onboard_nso.append(device)
+
+        for device in nso_onboarded_devices:
+            if device not in new_device_names:
+                to_remove_nso.append(device)
+
+    if not new_devices and nso_onboarded_devices:
+        to_remove_nso = nso_onboarded_devices
+
+    # Construct the result dictionaries for each category
+    result_cw = {
+        'already_onboarded_cw': already_onboarded_cw,
+        'to_onboard_cw': to_onboard_cw,
+        'to_remove_cw': to_remove_cw
+    }
+
+    result_nso = {
+        'already_onboarded_nso': already_onboarded_nso,
+        'to_onboard_nso': to_onboard_nso,
+        'to_remove_nso': to_remove_nso
+    }
+
+    # Return results for CW and NSO
+    return result_cw, result_nso
+
