@@ -148,3 +148,64 @@ def check_onboarding_status(onboarded_devices, new_devices, cw_onboarded_devices
     # Return results for CW and NSO
     return result_cw, result_nso
 
+
+
+def check_onboarding_status(new_devices, cw_onboarded_devices, nso_onboarded_devices):
+    # Extract device names
+    new_device_names = [device['name'] for device in new_devices]
+    cw_onboarded_names = cw_onboarded_devices
+    nso_onboarded_names = [device['name'] for device in nso_onboarded_devices]
+
+    # Initialize lists to store already onboarded, devices needing onboarding, and devices needing removal for each category
+    already_onboarded_cw = []
+    to_onboard_cw = []
+    to_remove_cw = []
+    already_onboarded_nso = []
+    to_onboard_nso = []
+    to_remove_nso = []
+
+    # Check if onboarded devices is not empty for CW devices
+    if cw_onboarded_devices:
+        # Check each new device
+        for device in new_devices:
+            if device['name'] in cw_onboarded_names:
+                already_onboarded_cw.append(device)
+            else:
+                to_onboard_cw.append(device)
+
+        # Check for devices to remove
+        for device in cw_onboarded_devices:
+            if device not in new_device_names:
+                to_remove_cw.append(device)
+
+    # Check if onboarded devices is not empty for NSO devices
+    if nso_onboarded_devices:
+        # Check each new device
+        for device in new_devices:
+            if device['name'] in nso_onboarded_names:
+                already_onboarded_nso.append(device)
+            else:
+                to_onboard_nso.append(device)
+
+        # Check for devices to remove
+        for device in nso_onboarded_devices:
+            if device['name'] not in new_device_names:
+                to_remove_nso.append(device)
+
+    # Construct the result dictionaries for each category
+    result_cw = {
+        'already_onboarded_cw': already_onboarded_cw,
+        'to_onboard_cw': to_onboard_cw,
+        'to_remove_cw': to_remove_cw
+    }
+
+    result_nso = {
+        'already_onboarded_nso': already_onboarded_nso,
+        'to_onboard_nso': to_onboard_nso,
+        'to_remove_nso': to_remove_nso
+    }
+
+    # Return results for CW and NSO
+    return result_cw, result_nso
+
+
