@@ -1,0 +1,9 @@
+def merge_dicts_by_device_name(list_of_dicts):
+    merged_dict = {}
+    for d in list_of_dicts:
+        device_name = d.get('device_name')
+        if device_name in merged_dict:
+            merged_dict[device_name].update(d)
+        else:
+            merged_dict[device_name] = d.copy()
+    return list(merged_dict.values())
