@@ -1,0 +1,32 @@
+from datetime import datetime, timedelta
+import pytz
+
+def is_weekend():
+    # Get current time in UTC
+    utc_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+
+    # Convert UTC time to EST
+    est = pytz.timezone('America/New_York')
+    est_now = utc_now.astimezone(est)
+
+    # Check if it's Friday after 5 PM EST or Saturday or Sunday before 12 PM EST
+    if est_now.weekday() == 4 and est_now.hour >= 17:  # Friday after 5 PM EST
+        return True
+    elif est_now.weekday() in [5, 6]:  # Saturday or Sunday
+        return True
+    elif est_now.weekday() == 0 and est_now.hour < 12:  # Monday before 12 PM EST (end of weekend)
+        return False
+    else:
+        return False
+
+# Example function to perform some action based on whether it's the weekend or not
+def some_option():
+    if is_weekend():
+        print("Weekend option is enabled.")
+        # Add code here for the weekend option
+    else:
+        print("Weekend option is disabled.")
+        # Add code here for when it's not the weekend
+
+# Test the function
+some_option()
