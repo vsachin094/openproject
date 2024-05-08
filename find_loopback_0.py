@@ -23,3 +23,13 @@ ipv4_address = "192.168.1.100"
 new_ipv4_address = subtract_two_from_third_octet(ipv4_address)
 print("Original IPv4 Address:", ipv4_address)
 print("Modified IPv4 Address:", new_ipv4_address)
+
+
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,  # Set the minimum level for the messages to be logged
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',  # Define the format of the log messages
+    datefmt='%Y-%m-%d %H:%M:%S'  # Define the date/time format for log messages
+)
