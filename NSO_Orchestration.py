@@ -14,3 +14,19 @@ Within our engineering operations team, the manual onboarding process for device
 This inefficiency is particularly pronounced in environments where multiple devices need to be onboarded swiftly to meet network demands or deploy new services. The time-intensive nature of manual onboarding not only strains resources but also inhibits our team's agility in responding to dynamic network requirements.
 
 Moreover, the risk of human error looms large during manual onboarding, potentially leading to configuration inconsistencies, service disruptions, or security vulnerabilities. These challenges underscore the urgent need for an automated solution that not only accelerates the onboarding process but also enhances accuracy, reliability, and scalability.
+
+
+Lightning-Fast Onboarding: Reduce device onboarding time from 15-20 minutes to just 1-2 minutes, ensuring rapid deployment of network resources without compromising accuracy.
+Auto Deboarding: Automatically remove inactive devices from the network, optimizing system cleanliness and resource utilization without manual intervention.
+Seamless Integration with NMDB: Leveraging NMDB as a primary data source, our solution intelligently identifies devices associated with NMDB groups, streamlining the onboarding process and enhancing efficiency.
+Scheduled Job Automation: All operations, from device identification to onboarding, are seamlessly orchestrated through scheduled jobs, eliminating the need for manual oversight and ensuring a hands-off approach to device management.
+Complete In-House Development: Developed entirely in-house, our solution reflects our commitment to innovation and quality. Every aspect of the system is meticulously crafted to meet the specific needs of our network environment, guaranteeing reliability and performance.
+
+
+
+
+  Lightning-Fast Onboarding: Reduce device onboarding time from 15-20 minutes to just 1-2 minutes, ensuring rapid deployment of network resources without compromising accuracy.
+Auto Deboarding: Automatically remove inactive devices from the network, optimizing system cleanliness and resource utilization without manual intervention.
+Seamless Integration with NMDB: Leveraging NMDB as a primary data source, our solution intelligently identifies devices associated with NMDB groups, streamlining the onboarding process and enhancing efficiency.
+Scheduled Job Automation: All operations, from device identification to onboarding, are seamlessly orchestrated through scheduled jobs, eliminating the need for manual oversight and ensuring a hands-off approach to device management.
+Complete In-House Development: Developed entirely in-house, our solution reflects our commitment to innovation and quality. Every aspect of the system is meticulously crafted to meet the specific needs of our network environment, guaranteeing reliability and performance.
