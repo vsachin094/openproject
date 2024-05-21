@@ -1,0 +1,88 @@
+To implement a `sync-from` feature using the kicker in Cisco NSO to periodically check the synchronization status of devices, you will need to set up a kicker policy that triggers the `sync-from` action at specified intervals. Here’s a step-by-step guide on how to achieve this:
+
+### Step 1: Define the Kicker Policy
+Create a kicker policy that specifies the trigger condition and the action to be taken. For periodic checks, you can use a time-based trigger.
+
+1. **Create a Kicker Policy File**:
+   Define the kicker policy in a file, usually in JSON or XML format. Here’s an example in XML:
+
+   ```xml
+   <kicker>
+       <name>periodic-sync</name>
+       <when>
+           <cron>
+               <expression>0 * * * * *</expression> <!-- Run every minute -->
+           </cron>
+       </when>
+       <action>
+           <type>script</type>
+           <name>sync-from-script</name>
+       </action>
+   </kicker>
+   ```
+
+   The above example sets the kicker to trigger every minute. Adjust the cron expression to set the desired interval (e.g., hourly, daily).
+
+### Step 2: Create the Sync-from Script
+The script specified in the kicker policy should perform the `sync-from` action on the devices.
+
+1. **Create a Script File**:
+   Write a script that NSO can execute. Here’s an example in Python:
+
+   ```python
+   #!/usr/bin/env python3
+
+   import ncs
+   import ncs.maapi
+   import ncs.maagic
+
+   with ncs.maapi.single_write_trans('admin', 'python') as trans:
+       root = ncs.maagic.get_root(trans)
+       for device in root.devices.device:
+           try:
+               print(f"Syncing from device: {device.name}")
+               device.sync_from()
+           except Exception as e:
+               print(f"Failed to sync from device {device.name}: {e}")
+       trans.apply()
+   ```
+
+   This script iterates over all devices and performs a `sync-from` operation. Save this script in the appropriate scripts directory of your NSO installation.
+
+### Step 3: Register the Kicker and Script in NSO
+You need to register the kicker and the script within NSO so that it can be executed according to the defined schedule.
+
+1. **Register the Kicker**:
+   Ensure that the kicker policy file is placed in the correct location (typically `$NCS_DIR/load-dir`). Then, load the kicker configuration into NSO.
+
+   ```bash
+   ncs_load -lm <path-to-kicker-policy-file>
+   ```
+
+2. **Make the Script Executable**:
+   Ensure the script has executable permissions.
+
+   ```bash
+   chmod +x <path-to-sync-from-script>
+   ```
+
+### Step 4: Verify and Test
+1. **Check Kicker Registration**:
+   Verify that the kicker is registered correctly in NSO.
+
+   ```bash
+   ncs_cli -u admin -C
+   show kicker
+   ```
+
+2. **Test the Kicker**:
+   Manually trigger the kicker to ensure it performs the `sync-from` action as expected.
+
+   ```bash
+   request kicker periodic-sync run
+   ```
+
+### Maintenance and Monitoring
+Regularly monitor the kicker logs to ensure it operates correctly and addresses any synchronization issues. Adjust the kicker policy or script as needed based on operational requirements.
+
+By following these steps, you’ll have a kicker in Cisco NSO that periodically checks the synchronization status of your devices, helping maintain consistency between NSO and the actual network device configurations.
