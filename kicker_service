@@ -1,0 +1,29 @@
+Cisco Network Services Orchestrator (NSO) includes a "kicker" feature, which is a powerful automation tool designed to enhance the efficiency and reliability of network management. Here’s a detailed look at what the kicker feature is and how it works:
+
+### What is the Kicker Feature?
+The kicker feature in Cisco NSO allows for automated responses to changes in network services. It acts as a monitoring mechanism that triggers specific actions when predefined conditions are met. These conditions can be based on various criteria, such as changes in configuration, state, or other operational parameters within the network.
+
+### Key Components and Functionality
+1. **Trigger Conditions**: These are the specific events or changes that the kicker watches for. Triggers can include configuration changes, operational state transitions, or specific time-based conditions.
+
+2. **Actions**: Once a trigger condition is met, the kicker initiates a predefined action. Actions can include tasks like sending notifications, executing scripts, or initiating workflows to reconfigure network elements.
+
+3. **Policies**: Kickers are configured through policies that define the triggers and corresponding actions. These policies are highly customizable, allowing network administrators to tailor the responses according to their operational needs.
+
+4. **Integration with NSO**: The kicker feature is tightly integrated with NSO's service orchestration capabilities, allowing it to leverage NSO’s comprehensive view of the network for making informed decisions.
+
+### Benefits
+- **Proactive Network Management**: By automatically responding to network changes, kickers help in maintaining service continuity and performance without requiring manual intervention.
+- **Reduced Operational Overhead**: Automation reduces the need for constant monitoring by network administrators, freeing them up for more strategic tasks.
+- **Enhanced Reliability**: Automated responses ensure consistent handling of network events, reducing the likelihood of human error.
+- **Scalability**: Kickers can handle complex and large-scale network environments by efficiently managing numerous events and conditions.
+
+### Example Use Cases
+1. **Automated Recovery**: If a critical network link goes down, a kicker can automatically reroute traffic and notify the network operations center (NOC).
+2. **Compliance Enforcement**: Ensure that configurations adhere to policy by automatically correcting any deviations detected.
+3. **Performance Optimization**: Adjust resource allocations or configurations in real-time based on network performance metrics.
+
+### Configuration and Management
+Setting up kickers involves defining the conditions and actions through NSO’s configuration interface. This can be done via CLI, web UI, or APIs, depending on the network administrator’s preference. Policies are typically defined in a structured format (e.g., XML or JSON) and can be version-controlled to maintain an audit trail of changes.
+
+In summary, the kicker feature in Cisco NSO is a powerful tool for automating network management tasks, improving efficiency, and ensuring network reliability. Its ability to trigger predefined actions based on real-time network events makes it an essential component for modern, automated network operations.
