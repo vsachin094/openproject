@@ -1,0 +1,16 @@
+# render_template.yml
+
+- name: Render Jinja2 Template with YAML Data
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Read YAML file
+      include_vars:
+        file: data.yaml
+        name: my_vars
+
+    - name: Render the template
+      template:
+        src: template.j2
+        dest: /path/to/output/file.yml
+      vars: "{{ my_vars }}"
