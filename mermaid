@@ -65,5 +65,57 @@ flowchart TD
     %% Label for Manual Process
     A1 -. Manual Process -.-> Current_Manual_Process
 
+
+
+flowchart TD
+    subgraph Data_Sources
+        A1[NMDB -Device Info]
+        A2[Syslog-Network Data]
+        A3[ServiceNow-Incident Management]
+        A4[Live Network Data]
+    end
+
+    subgraph Data_Processing
+        B1[Data Aggregator]
+        B2[Data Analyzer]
+        B3[Knowledge Base]
+        B4[NLP Engine]
+        B5[Answering Engine]
+    end
+
+    subgraph User_Interface
+        C1[ChatOps Platform]
+        C2[Chatbot Interface]
+    end
+
+    subgraph External_Systems
+        D1[NMS Systems]
+        D2[Automation Tools]
+    end
+
+    %% Data Flow
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    A4 --> B1
+    B1 --> B2
+    B2 --> B3
+    B3 --> B4
+    B4 --> B5
+    B5 --> C2
+
+    %% User Interaction
+    C1 -->|User Queries| C2
+    C2 -->|Response| B5
+
+    %% External Interaction
+    D1 -->|Data Gathering| B1
+    D2 -->|Data Analysis| B2
+
+    %% Connecting Components
+    B1 -->|Aggregated Data| C1
+    B2 -->|Analyzed Data| C1
+    B3 -->|Knowledge Base| C1
+
     %% Label for Automated Process
     A2 -. Automated Process -.-> Automated_Process_with_ChatOps_Platform
