@@ -20,3 +20,8 @@ Here's an updated version that emphasizes performance and impact:
 ---
 
 This version emphasizes both Tamas's performance and the impact he had on the WAN 2.0 project. How does this feel? Would you like to tweak anything further?
+
+
+Managing Risk: Tamas has shown strong awareness of potential risks, particularly in the technical aspects of the WAN 2.0 project. His deep understanding of Cisco NSO tooling, ISE, and ENS-related tools has helped us avoid many pitfalls. For example, during the testing and pre-provisioning phases, his careful attention to detail and his ability to foresee issues ensured that the system was stable and performed as expected. He’s always mindful of potential risks, which has helped minimize downtime and reduce technical debt.
+
+Control Measures: Tamas consistently implements best practices when it comes to controlling and mitigating risks, especially in API development and integration tasks. His work on Cisco NSO and Crosswork APIs was not just about delivering functionality but also ensuring that proper controls were in place to maintain system integrity. By following structured processes and double-checking work, he helped ensure that the APIs were secure, reliable, and less prone to failure.  
