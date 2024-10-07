@@ -1,4 +1,4 @@
-Here’s the revised 360 feedback incorporating your new development activities and contributions:
+Here’s the modified feedback incorporating your consecutive TIP awards and your role as both an idea originator and product owner:
 
 Performance and Impact:
 
@@ -6,17 +6,17 @@ This year, I made key contributions that significantly impacted the success of m
 
 In addition to project delivery, I took up new development activities, creating API wrappers for AAP, Cisco NSO, and Cisco Crosswork. These wrappers simplify the interaction with these tools for both my team and other teams, speeding up development by reducing the need for deep tool-specific knowledge. This has directly contributed to faster project execution and less dependency on niche expertise.
 
-As part of the ITAM project, I collaborated with teams like EV and Etrade, building strong relationships that streamlined the process and enhanced overall communication. Additionally, I introduced a new orchestration method for device onboarding using NMDB groups, a solution that is now being adopted by the DTLAM team for other tools.
+As part of the ITAM project, I collaborated with teams such as EV and Etrade, building strong relationships that streamlined the process and enhanced overall communication. Additionally, I introduced a new orchestration method for device onboarding using NMDB groups, a solution that is now being adopted by the DTLAM team for other tools.
+
+My contributions have been recognized over the past three years, as I have won the TIP award consecutively. This achievement reflects my commitment to driving innovative ideas and working as a product owner to ensure successful implementation and delivery of impactful solutions.
 
 Through my involvement in the Innovation team, I’ve promoted new ideas and supported colleagues in implementing innovative solutions, including providing technical assistance when needed. These contributions have helped drive both efficiency and creativity across ENS and ETS India.
-
-My efforts were recognized through the TIP 2024 and GRIT Cycle 1 Award for the WAN 2.0 onboarding solution, underscoring the value I brought to the team and the firm.
 
 Risk and Controls:
 
 I take my responsibility for upholding the firm’s values seriously, always striving to maintain high standards of quality, integrity, and compliance. On projects like WAN 2.0 and AAP, I ensured that all deliverables adhered to the firm’s risk management and compliance frameworks. This involved implementing strict controls during development and using tools like AllChecks to ensure thorough and accurate auditing.
 
-I took a leadership role in improving the AllChecks platform, allowing it to consume reference files from YAML, JSON, and Git, significantly reducing risks associated with filesystem dependencies. This shift made the system more robust and less prone to operational failures, while also ensuring compliance with internal governance standards.
+I took a leadership role in improving the AllChecks platform, allowing it to consume reference files from YAML, JSON, and Git, significantly reducing risks associated with filesystem dependencies. This shift made the system more robust and less prone to operational failures while ensuring compliance with internal governance standards.
 
 The orchestration method I introduced for device onboarding through NMDB groups helps reduce operational risk by automating complex, repetitive tasks. This reduces the chance for human error while ensuring consistency and scalability.
 
@@ -34,4 +34,4 @@ I also continuously work on self-improvement through various learning opportunit
 
 By promoting innovation, fostering inclusivity, and sharing knowledge, I am committed to upholding the firm’s values and helping to create an environment where everyone can excel.
 
-This version integrates all your contributions while maintaining a tone that reflects your style. Let me know if you’d like any further changes!
+This version incorporates your consecutive TIP awards and your roles in a way that maintains a cohesive narrative. Let me know if you’d like any further modifications!
