@@ -1,0 +1,37 @@
+Here’s the revised 360 feedback incorporating your new development activities and contributions:
+
+Performance and Impact:
+
+This year, I made key contributions that significantly impacted the success of my team and the broader organization. By leading critical projects like WAN 2.0, AAP, AllChecks, and the ITAM discovery project, I was able to deliver high-quality solutions that met our business objectives on time. These efforts ensured that we stayed on track with our goals while also improving efficiency across teams.
+
+In addition to project delivery, I took up new development activities, creating API wrappers for AAP, Cisco NSO, and Cisco Crosswork. These wrappers simplify the interaction with these tools for both my team and other teams, speeding up development by reducing the need for deep tool-specific knowledge. This has directly contributed to faster project execution and less dependency on niche expertise.
+
+As part of the ITAM project, I collaborated with teams like EV and Etrade, building strong relationships that streamlined the process and enhanced overall communication. Additionally, I introduced a new orchestration method for device onboarding using NMDB groups, a solution that is now being adopted by the DTLAM team for other tools.
+
+Through my involvement in the Innovation team, I’ve promoted new ideas and supported colleagues in implementing innovative solutions, including providing technical assistance when needed. These contributions have helped drive both efficiency and creativity across ENS and ETS India.
+
+My efforts were recognized through the TIP 2024 and GRIT Cycle 1 Award for the WAN 2.0 onboarding solution, underscoring the value I brought to the team and the firm.
+
+Risk and Controls:
+
+I take my responsibility for upholding the firm’s values seriously, always striving to maintain high standards of quality, integrity, and compliance. On projects like WAN 2.0 and AAP, I ensured that all deliverables adhered to the firm’s risk management and compliance frameworks. This involved implementing strict controls during development and using tools like AllChecks to ensure thorough and accurate auditing.
+
+I took a leadership role in improving the AllChecks platform, allowing it to consume reference files from YAML, JSON, and Git, significantly reducing risks associated with filesystem dependencies. This shift made the system more robust and less prone to operational failures, while also ensuring compliance with internal governance standards.
+
+The orchestration method I introduced for device onboarding through NMDB groups helps reduce operational risk by automating complex, repetitive tasks. This reduces the chance for human error while ensuring consistency and scalability.
+
+As part of my role, I have promoted a culture of inclusion and respect, encouraging open communication and collaboration with diverse teams such as EV and Etrade. By fostering an environment where differences are valued, I help create a workplace that upholds the firm’s core values and delivers excellent results.
+
+Culture and Values:
+
+As a member of the ETS Innovation team, I am dedicated to fostering a culture of innovation within the firm. My role involves promoting new ideas, helping colleagues to implement them, and providing technical assistance whenever necessary. I’ve worked closely with the ENS and ETS India teams, encouraging them to explore innovative solutions that drive better outcomes for the firm and our clients.
+
+I’ve actively shared my knowledge with others through multiple presentations and sessions, where I discussed tools, techniques, and solutions that have been beneficial to our projects. These sessions have helped increase the team’s overall technical competency and fostered a collaborative environment where knowledge is shared freely.
+
+Beyond my core responsibilities, I regularly participate in Give Back 5 initiatives and other activities that contribute to the firm’s mission of giving back to the community. Additionally, I serve on the Morgan Stanley interview panel, where I have conducted 6+ interviews for freshers and interns, helping to identify and bring new talent into the firm.
+
+I also continuously work on self-improvement through various learning opportunities. This year, I completed courses on advanced Python, Ansible, and Cisco automation, which have enhanced my technical skills and allowed me to contribute even more effectively to my team and projects.
+
+By promoting innovation, fostering inclusivity, and sharing knowledge, I am committed to upholding the firm’s values and helping to create an environment where everyone can excel.
+
+This version integrates all your contributions while maintaining a tone that reflects your style. Let me know if you’d like any further changes!
