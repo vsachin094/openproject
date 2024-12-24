@@ -1,0 +1,81 @@
+Yes, I can help with this! Below is an outline and content for a document explaining the implications of having NSO service instances per device versus a common service instance for all devices.
+
+Cisco NSO Service Instance Design: Device-Wise vs. Common Instance
+
+1. Overview
+
+Cisco NSO allows service configurations to be applied across devices using service instances. This document outlines the two main approaches to service instance design and their implications:
+	•	Device-Wise Service Instance: Each device gets its own unique service instance.
+	•	Common Service Instance for All Devices: A single service instance applies to multiple devices.
+
+2. Device-Wise Service Instance
+
+Description
+
+In this approach, each device has a separate service instance. Each instance is uniquely identified and independently managed.
+
+Advantages
+	1.	Granular Control: Individual devices can be updated, modified, or removed without impacting other devices.
+	2.	Reduced Risk: Errors or deletions in one instance affect only the associated device, minimizing the blast radius.
+	3.	Custom Configurations: Allows device-specific configurations tailored to individual requirements.
+	4.	Simplified Troubleshooting: Easier to debug issues since the scope is limited to a single device.
+
+Disadvantages
+	1.	Increased Service Count: Managing a large number of service instances can be complex and may strain the NSO system with high-scale deployments.
+	2.	Operational Overhead: Each new device requires creating and managing a unique service instance, increasing operational tasks.
+
+3. Common Service Instance for All Devices
+
+Description
+
+In this approach, one service instance is used for all devices. Configuration changes apply globally to all devices under that instance.
+
+Advantages
+	1.	Simplified Management: Only one service instance to manage, reducing administrative overhead.
+	2.	Scalability: Easier to handle large-scale networks since the number of service instances is minimal.
+	3.	Consistency: Ensures all devices are configured identically, reducing configuration drift.
+
+Disadvantages
+	1.	Higher Risk: A misconfiguration or deletion affects all devices under the instance, which can lead to widespread outages.
+	2.	Limited Flexibility: Device-specific configurations are harder to achieve.
+	3.	Troubleshooting Complexity: Debugging issues becomes challenging because changes impact multiple devices simultaneously.
+
+4. Key Implications
+
+Aspect	Device-Wise Service Instance	Common Service Instance
+Granularity	High	Low
+Risk of Failure	Isolated to individual devices	High impact across all devices
+Flexibility	High (supports device-specific configurations)	Low (requires uniform configurations)
+Scalability	Challenging in large deployments	Easier to scale
+Troubleshooting	Easier to isolate issues	Difficult due to global impact
+Administrative Overhead	High	Low
+
+5. Recommendation
+
+Best Practice
+	•	Use Device-Wise Service Instances for critical infrastructure or scenarios requiring granular control and custom configurations.
+	•	Use a Common Service Instance for homogeneous environments where devices share identical configurations and changes are minimal.
+
+Hybrid Approach
+	•	For networks with diverse requirements, consider a hybrid model:
+	•	Device-Wise instances for critical or unique devices.
+	•	Common instance for less critical or uniform devices.
+
+6. Risks in Current Implementation
+
+If all devices are managed under a common service instance, the following risks arise:
+	1.	Global Impact of Deletions: Deleting the service removes configurations from all associated devices.
+	2.	Unintended Changes: A mistake in configuration affects all devices.
+	3.	Maintenance Complexity: Temporary changes for a specific device may require workarounds.
+
+7. Conclusion
+
+Selecting the appropriate service instance design depends on the network’s scale, criticality, and configuration requirements. While device-wise instances provide flexibility and safety, they require more management effort. On the other hand, a common instance simplifies operations but comes with increased risks.
+
+8. Next Steps
+	1.	Review the current service instance structure.
+	2.	Arrange a call with Cisco representatives to discuss best practices.
+	3.	Conduct a risk analysis of moving to a device-wise model or adopting a hybrid approach.
+	4.	Plan for any required migration or remediation.
+
+Let me know if you need this expanded, formatted, or customized further!
