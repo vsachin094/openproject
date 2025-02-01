@@ -1,7 +1,10 @@
-def calculate_tax(income):
+def calculate_tax(income, nps_percentage=0, basic_salary_percentage=50):
     # Standard deduction of ₹75,000
     standard_deduction = 75000
-    taxable_income = max(0, income - standard_deduction)
+    basic_salary = income * (basic_salary_percentage / 100)  # Basic salary is 50% of income
+    nps_investment = basic_salary * (nps_percentage / 100)  # NPS as % of Basic Salary
+
+    taxable_income = max(0, income - standard_deduction - nps_investment)
 
     # Updated tax slabs (New Regime 2024-25)
     tax_slabs = [
@@ -29,9 +32,19 @@ def calculate_tax(income):
     if taxable_income <= 1275000:
         tax = 0  
 
-    return tax
+    # Apply Health and Education Cess (4% of tax)
+    cess = tax * 0.04
+    total_tax = tax + cess
+
+    return total_tax, nps_investment, taxable_income
 
 # Example usage
 income = float(input("Enter your annual income (in ₹): "))
-tax = calculate_tax(income)
+nps_percentage = float(input("Enter NPS investment percentage of Basic Salary (in %): "))
+basic_salary_percentage = 50  # Basic salary is 50% of total income
+
+tax, nps_investment, taxable_income = calculate_tax(income, nps_percentage, basic_salary_percentage)
+
+print(f"Your NPS investment: ₹{nps_investment:,.2f}")
+print(f"Your taxable income after deductions: ₹{taxable_income:,.2f}")
 print(f"Your total income tax payable: ₹{tax:,.2f}")
