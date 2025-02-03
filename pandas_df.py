@@ -4,8 +4,8 @@ def explode_list_columns(df, output_csv=None):
     """
     Dynamically explodes all list-like columns in a DataFrame.
     
-    - Handles empty lists by replacing them with blank values.
-    - Identifies columns with list values automatically.
+    - Handles mixed data types (lists + strings/integers).
+    - Converts empty lists to blank values ("").
     - Explodes each list column sequentially.
     - Saves to CSV if `output_csv` is provided.
 
@@ -14,28 +14,32 @@ def explode_list_columns(df, output_csv=None):
     :return: Processed DataFrame with exploded list values.
     """
 
-    # Identify list-like columns and replace empty lists with [""] (blank)
+    # Identify columns that contain lists
     for col in df.columns:
         if df[col].apply(lambda x: isinstance(x, list)).any():
-            df[col] = df[col].apply(lambda x: x if x else [""])  
-
-    # Explode all identified list-like columns
+            # Ensure non-list values remain unchanged, empty lists become [""]
+            df[col] = df[col].apply(lambda x: x if isinstance(x, list) else [x] if pd.notna(x) else [""])
+    
+    # Explode all detected list-like columns
     for col in df.columns:
         if df[col].apply(lambda x: isinstance(x, list)).any():
             df = df.explode(col)
+    
+    # Replace NaN values with empty strings
+    df = df.fillna("")
 
     # Save to CSV if output file path is provided
     if output_csv:
         df.to_csv(output_csv, index=False)
-    
+
     return df
 
-# Sample Data
+# Sample Data with Mixed Types
 data = {
-    "ID": [1, 2, 3],
-    "Name": ["Alice", "Bob", "Charlie"],
-    "Hobbies": [["Reading", "Swimming"], [], ["Music", "Gaming", "Cooking"]],
-    "Scores": [[85, 90], [78, 80, 82], [88]]
+    "ID": [1, 2, 3, 4],
+    "Name": ["Alice", "Bob", "Charlie", "David"],
+    "Hobbies": [["Reading", "Swimming"], [], ["Music", "Gaming", "Cooking"], None],
+    "Scores": [[85, 90], [78, 80, 82], [88], "Pass"]
 }
 
 df = pd.DataFrame(data)
