@@ -2,7 +2,7 @@ import pandas as pd
 
 def explode_list_columns(df, output_csv=None):
     """
-    Dynamically explodes all list-like columns in a DataFrame.
+    Dynamically explodes all list-like and comma-separated columns in a DataFrame.
     
     - Handles mixed data types (lists + strings/integers).
     - Converts empty lists to blank values ("").
@@ -14,11 +14,11 @@ def explode_list_columns(df, output_csv=None):
     :return: Processed DataFrame with exploded list values.
     """
 
-    # Identify columns that contain lists
+    # Identify columns that contain lists or comma-separated values
     for col in df.columns:
-        if df[col].apply(lambda x: isinstance(x, list)).any():
+        if df[col].apply(lambda x: isinstance(x, list) or (isinstance(x, str) and ',' in x)).any():
             # Ensure non-list values remain unchanged, empty lists become [""]
-            df[col] = df[col].apply(lambda x: x if isinstance(x, list) else [x] if pd.notna(x) else [""])
+            df[col] = df[col].apply(lambda x: x if isinstance(x, list) else x.split(',') if isinstance(x, str) and ',' in x else [x] if pd.notna(x) else [""])
     
     # Explode all detected list-like columns
     for col in df.columns:
@@ -38,12 +38,12 @@ def explode_list_columns(df, output_csv=None):
 data = {
     "ID": [1, 2, 3, 4],
     "Name": ["Alice", "Bob", "Charlie", "David"],
-    "Hobbies": [["Reading", "Swimming"], [], ["Music", "Gaming", "Cooking"], None],
+    "Hobbies": ["Reading,Swimming", [], ["Music", "Gaming", "Cooking"], None],
     "Scores": [[85, 90], [78, 80, 82], [88], "Pass"]
 }
 
 df = pd.DataFrame(data)
-
+print(df)
 # Process DataFrame
 df_exploded = explode_list_columns(df, "output.csv")
 
