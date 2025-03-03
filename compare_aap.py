@@ -41,8 +41,9 @@ def find_matching_files(hpna_base_dirs, aap_base_dir, date, test_mappings):
             
             if os.path.exists(aap_path):
                 for file in os.listdir(aap_path):
-                    device_name = extract_device_name(file)
-                    aap_files[(aap_test, file, device_name)] = os.path.join(aap_path, file)
+                    if file.endswith(".pre"):  # AAP diag file
+                        device_name = extract_device_name(file)
+                        aap_files[(aap_test, file, device_name)] = os.path.join(aap_path, file)
             
             logging.info(f"Completed processing subdir: HPNA={hpna_test}, AAP={aap_test}")
     
@@ -59,7 +60,7 @@ def generate_comparison_reports(hpna_files, aap_files, output_dir):
         hpna_count = count_lines(hpna_path)
         aap_path = aap_files.get((subdir, hpna_file, device_name))
         aap_count = count_lines(aap_path) if aap_path else "N/A"
-        flag = "Review Required" if aap_count != "N/A" and hpna_count != aap_count else "OK"
+        flag = "Review Required" if aap_count == "N/A" or hpna_count != aap_count else "OK"
         
         unique_hpna_devices.setdefault(subdir, set()).add(device_name)
         if aap_path:
@@ -70,14 +71,6 @@ def generate_comparison_reports(hpna_files, aap_files, output_dir):
         if subdir not in subdir_data:
             subdir_data[subdir] = []
         subdir_data[subdir].append([device_name, hpna_file, "Yes", "Yes" if aap_path else "No", hpna_count, aap_count, flag])
-    
-    for (subdir, aap_file, device_name), aap_path in aap_files.items():
-        if subdir not in subdir_data:
-            subdir_data[subdir] = []
-        if not any(entry[1] == aap_file for entry in subdir_data[subdir]):
-            aap_count = count_lines(aap_path)
-            subdir_data[subdir].append([device_name, aap_file, "No", "Yes", "N/A", aap_count, "Review Required"])
-            unique_aap_devices.setdefault(subdir, set()).add(device_name)
     
     for subdir, data in subdir_data.items():
         logging.info(f"Generating report for subdir: {subdir}")
