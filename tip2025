@@ -1,0 +1,49 @@
+GenAI-Powered Network Deployment Assistant
+
+⸻
+
+Description:
+
+As part of the Enterprise Network Services (ENS) team, we manage a large and complex infrastructure consisting of routers, switches, firewalls, and other network devices. To provide reliable and scalable connectivity across the organization, we regularly perform activities such as:
+	•	Deploying new devices
+	•	Replacing or upgrading existing hardware
+	•	Rolling out new sites or data center expansions
+	•	Modifying configurations for scaling or re-architecture
+
+All these activities involve significant amounts of manual configuration work, either by writing configs from scratch or using custom scripts. These scripts are often static, need frequent maintenance, and still require human intervention.
+
+The proposed idea is to build a GenAI-powered Network Deployment Assistant that can understand deployment intents and automatically generate configurations, validate them against standards, and even produce related documentation—all using internal historical data and open-source AI models. This will help us automate repetitive tasks, reduce errors, and improve consistency in deployments.
+
+⸻
+
+Current Challenges:
+	•	Manual Configuration Generation: Engineers write or modify configurations manually for each device or site. This slows down deployments and introduces inconsistencies.
+	•	Script Limitations: Existing automation scripts are not scalable for every scenario and require manual input/updates.
+	•	Lack of Standardization: Different teams or engineers follow different practices, which can cause variations and potential compliance issues.
+	•	Time-Consuming Documentation: After making config changes or deployments, documentation is often delayed or incomplete.
+	•	No In-House AI Infra: We currently lack infrastructure (like GPUs or AI clusters) to train or deploy large language models.
+
+⸻
+
+Solution:
+	•	Use Lightweight Open-Source LLMs (like TinyLlama, Mistral, or Phi-2) which can be run on our available 12-core CPU and 128GB RAM machine.
+	•	Prompt-Based Config Generation: An engineer provides high-level inputs like:
+“Deploy a PE router at DC location with OSPF and BGP”
+
+And the assistant generates:
+	•	Full configuration aligned with internal design patterns
+	•	Deployment summary with IPs, protocol details, device roles
+	•	Optional ASCII-based or generated network diagram
+	•	Retrieval-Augmented Generation (RAG): Leverage past configurations and documentation stored in internal repositories to serve as examples using a vector DB like FAISS or ChromaDB.
+	•	Basic Config Validator: Integrate Python-based validation to check syntax, interface naming, protocol consistency, etc., before applying the generated config.
+	•	Local Deployment: Entire pipeline runs locally on our available system—no dependency on external cloud or third-party APIs. This ensures security and data privacy.
+
+⸻
+
+How This Will Help:
+	•	Accelerates Deployments: Saves hours of manual effort, especially during large-scale upgrades, migrations, or rollouts.
+	•	Standardizes Configuration Practices: Aligns all generated configs with defined design and compliance standards.
+	•	Reduces Human Error: Ensures configurations are syntactically and logically correct, reducing troubleshooting after deployment.
+	•	Improves Documentation: Automatically generates deployment summaries that can be stored in Confluence, SharePoint, or CMDB systems.
+	•	Leverages Existing Data: Makes use of our vast history of internal configurations and design knowledge without needing new data sources.
+	•	Empowers Teams: Even junior engineers or non-experts can generate quality configs using simple prompts, reducing bottlenecks and enabling self-service.
