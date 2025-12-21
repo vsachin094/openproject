@@ -11,3 +11,44 @@ select {
   interface: iface.data.ifName,
   rawConfig: iface.data.body
 }
+
+let targetDeviceName = "R1-CORE";
+let targetIfName     = "GigabitEthernet0/1";
+
+pattern ifaceBlock = '''
+interface {name:string}
+{body:/([^!]+)/}
+''';
+
+foreach device in network.devices
+where device.name == targetDeviceName
+
+foreach match in blockMatches(device.files.config, ifaceBlock)
+where match.data.name == targetIfName
+
+select {
+  deviceName: device.name,
+  interfaceName: match.data.name,
+  rawConfig: match.data.body
+}
+
+let targetDeviceName = "R1-CORE";
+let targetIfName     = "GigabitEthernet0/1";
+
+pattern ifaceBlock = '''
+interface {name:string}
+{body:/([^!]+)/}
+''';
+
+foreach device in network.devices
+where device.name == targetDeviceName
+
+foreach match in blockMatches(device.files.config, ifaceBlock)
+where match.data.name == targetIfName
+
+select {
+  deviceName: device.name,
+  interfaceName: match.data.name,
+  rawConfig: match.data.body
+}
+
