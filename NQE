@@ -1,0 +1,13 @@
+// Example pattern for Cisco-like "interface" blocks
+pattern interfaceBlock = {
+  name: "interface" _+ {ifName: string} _+ "\n"
+         {body: /([^!]+)/}
+};
+
+foreach device in network.devices
+foreach iface in blockMatches(device.files.config, interfaceBlock)
+select {
+  deviceName: device.name,
+  interface: iface.data.ifName,
+  rawConfig: iface.data.body
+}
