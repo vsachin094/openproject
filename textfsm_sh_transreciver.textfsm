@@ -1,0 +1,26 @@
+Value INTERFACE (\S+)
+Value MANUFACTURER (\S+)
+Value TYPE (.+)
+Value SERIAL (\S+)
+Value PART_NUMBER (\S+)
+
+Start
+^${INTERFACE}
+^ \stransceiver is not -> Clear
+
+^ \stype\s+is(\s+${TYPE})?
+^ \sname\s+is(\s+${MANUFACTURER})?
+^ \spart\s+number\s+is(\s+${PART_NUMBER})?
+^ \sserial\s+number\s+is(\s+${SERIAL})?
+
+^ \stransceiver\s+
+^ \snominal\s+
+^ \srevision\s+
+^ \sLink\s+
+^ \scisco\s+id
+^ \scisco\s+extended
+^ \scisco\s+part\s+number
+^ \scisco\s+product\s+id
+
+^ *$ -> Record
+^. -> Error
