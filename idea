@@ -1,0 +1,87 @@
+Here’s your final, clean copy-paste write-up with the updated title and positioning 👇
+
+⸻
+
+Title
+
+ImpactIQ: AI-Powered Infrastructure Change Impact Analyzer
+
+⸻
+
+Introduction & Problem Description
+
+In today’s IT environment, infrastructure is highly interconnected. Network devices such as routers, switches, and firewalls, along with other systems, depend on each other in complex ways. Because of this, even a small configuration change can have a wide and unexpected impact.
+
+Currently, impact analysis before making a change is mostly manual and based on experience. Engineers rely on partial documentation, static diagrams, or past knowledge. There is no centralized system that clearly shows how a change in one component will affect other devices, network paths, or dependent services.
+
+This leads to several challenges:
+	•	Limited visibility of dependencies across the network
+	•	Unexpected service impact after changes
+	•	Increased incidents caused by small configuration updates
+	•	Reactive troubleshooting instead of proactive planning
+
+For example, a simple interface shutdown, ACL modification, or route update can unintentionally affect multiple downstream devices or business-critical services. These issues are often identified only after the change is implemented.
+
+The core problem is the lack of visibility and prediction before executing infrastructure changes, especially in network environments.
+
+⸻
+
+Proposed Solution
+
+We propose ImpactIQ, an AI-powered Infrastructure Change Impact Analyzer that helps engineers understand the impact of a change before it is applied.
+
+The initial focus of ImpactIQ will be on network infrastructure such as routers, switches, and firewalls, with the ability to extend to broader IT systems in future phases.
+
+The solution works in a simple and practical way:
+
+First, ImpactIQ collects and analyzes infrastructure data including network configurations, topology, routing information, and telemetry. Using this data, it builds a dynamic dependency map that shows how devices, interfaces, and network paths are interconnected.
+
+Next, when an engineer provides a planned change (such as interface shutdown, ACL update, route modification, or VLAN change), ImpactIQ simulates the change and analyzes how it will propagate across the network.
+
+The system identifies:
+	•	Affected devices and interfaces
+	•	Downstream dependencies
+	•	Potential service impact
+	•	Extent of impact (blast radius)
+
+An AI layer enhances this by learning from past changes and incidents to predict risk levels and improve accuracy over time.
+
+Finally, ImpactIQ presents a clear and simple output including:
+	•	Impacted components
+	•	Risk level (Low / Medium / High)
+	•	Impact path visibility
+	•	Suggested precautions before execution
+
+This enables engineers to make informed and confident decisions before applying any change.
+
+⸻
+
+Benefits and Impact
+
+ImpactIQ provides strong and practical benefits for infrastructure and network operations:
+	•	Reduced Incidents
+By understanding impact in advance, teams can prevent outages caused by hidden dependencies
+	•	Better Change Planning
+Engineers can take informed decisions instead of relying on assumptions
+	•	Improved Visibility
+Clear understanding of how devices and services are interconnected
+	•	Faster Troubleshooting
+Dependency mapping helps quickly identify root causes when issues occur
+	•	Increased Confidence in Changes
+Teams can perform changes with greater certainty and reduced risk
+	•	Scalable for Future Use
+While initially focused on network infrastructure, the solution can be extended to servers, firewalls, and applications
+
+Example:
+If an engineer plans to shut down an interface on a core network device, ImpactIQ can show all dependent devices, affected paths, and associated services along with a risk level. This allows the engineer to plan mitigation steps or reschedule the change, avoiding potential outages.
+
+⸻
+
+Bottom Line
+
+ImpactIQ acts as a pre-change intelligence layer for infrastructure operations, helping teams understand impact, reduce risk, and move from reactive issue handling to proactive and controlled change management.
+
+⸻
+
+This is ready to submit as-is.
+If you need, I can next help you with a quick presentation or speaking pitch 👍
