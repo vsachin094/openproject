@@ -1,0 +1,23 @@
+Review my FastMCP server code and refactor only the tool response handling.
+
+Requirements:
+
+1. Follow FastMCP and MCP best practices.
+2. Ensure all tool responses are valid MCP tool results.
+3. Return structured JSON instead of raw text wherever possible.
+4. Use a consistent schema:
+
+{
+“status”: “success|error”,
+“message”: “human readable summary”,
+“data”: {}
+}
+
+5. Preserve all existing business logic.
+6. Do not change function names, tool names, parameters, authentication, or workflow logic.
+7. Remove any unnecessary response wrappers, duplicate serialization, or malformed MCP response objects.
+8. Ensure exceptions return structured error responses.
+9. Show the complete corrected code with comments explaining every change.
+10. If any response format violates the MCP specification, identify the issue and provide the corrected implementation.
+
+Analyze the entire codebase before making changes and verify that every @mcp.tool() function returns a consistent response structure.
